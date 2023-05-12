@@ -1,23 +1,60 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "outDir": "lib",
-    "lib": ["dom", "dom.iterable", "esnext"],
     "declaration": true,
-    "declarationDir": "lib",
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    "declarationDir": "./dist",
     "module": "esnext",
+    "noImplicitAny": true,
+    "outDir": "./dist",
+    "target": "es5",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
+    "baseUrl": "./src",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react"
+    "jsx": "react",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "pretty": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "downlevelIteration": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "stripInternal": true,
+    "emitDecoratorMetadata": false,
+    "experimentalDecorators": false,
+    "strictPropertyInitialization": true,
+    "importHelpers": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noEmit": false,
+    "paths": {
+      "*": [
+        "*",
+        "src/*",
+      ]
+    },
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "lib"]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "coverage",
+    "config",
+    "dist",
+    "node_modules/**",
+    "*.test.{js+(|x), ts+(|x)}",
+    "**/*.test.{js+(|x), ts+(|x)}"
+  ]
 }
