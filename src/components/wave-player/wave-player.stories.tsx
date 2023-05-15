@@ -19,7 +19,7 @@ type Story = StoryObj<typeof WavePlayer>;
  * Example Button story with React Hooks.
  * See note below related to this example.
  */
-const MuiWrapper = ({ children }) => {
+const MuiWrapper = ({ children }: { children: React.ReactNode }) => {
   const theme = createTheme();
 
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;

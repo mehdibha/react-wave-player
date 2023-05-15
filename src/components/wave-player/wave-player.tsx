@@ -5,11 +5,13 @@ import { WaveSurferParams } from 'wavesurfer.js/types/params';
 export interface PlayerProps {
   src: string;
   playPauseButton?: React.ComponentType<{ playing: boolean; onClick: () => void }>;
-  waveOptions: WaveSurferParams;
+  loader: () => React.JSX.Element;
+  waveOptions?: WaveSurferParams;
+  containerStyles: any;
 }
 
 const WavePlayer = (props: PlayerProps) => {
-  const { src, playPauseButton: PlayPauseButton, waveOptions } = props;
+  const { src, playPauseButton: PlayPauseButton, loader: Loader, waveOptions, containerStyles } = props;
   const [playing, setPlaying] = React.useState(false);
   const [ready, setReady] = React.useState(false);
   const wavesurferRef = React.useRef<WaveSurfer | null>(null);
@@ -20,6 +22,7 @@ const WavePlayer = (props: PlayerProps) => {
     if (containerRef.current) {
       wavesurferRef.current = WaveSurfer.create({
         ...waveOptions,
+        hideScrollbar: true,
         container: containerRef.current,
       });
       wavesurferRef.current.on('ready', handlePlayerReady);
@@ -63,23 +66,27 @@ const WavePlayer = (props: PlayerProps) => {
   }, [src, audioLoaded]);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '400px',
-      }}
-    >
-      {PlayPauseButton ? (
-        <PlayPauseButton playing={playing} onClick={playPause} />
-      ) : (
-        <button onClick={playPause}>{playing ? 'pause' : 'play'}</button>
-      )}
-      <div ref={containerRef} style={{ flex: 1, overflowY: 'hidden' }}>
-        {!ready && <p>loading</p>}
+    <>
+      {!ready && Loader ? <Loader /> : <p>loading...</p>}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+          ...containerStyles,
+        }}
+      >
+        {ready ? (
+          PlayPauseButton ? (
+            <PlayPauseButton playing={playing} onClick={playPause} />
+          ) : (
+            <button onClick={playPause}>{playing ? 'pause' : 'play'}</button>
+          )
+        ) : null}
+        <div ref={containerRef} style={{ flex: 1 }} />
       </div>
-    </div>
+    </>
   );
 };
 
