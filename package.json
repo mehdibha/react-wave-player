@@ -1,6 +1,6 @@
 {
   "name": "react-wave-player",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "A React component for playing audio files with audio waveform visualization, built on top of Web Audio API and HTML5 Canvas (using wavesurfer.js).",
   "author": "Kai Hotz",
   "license": "MIT",
@@ -36,6 +36,7 @@
     "check-types": "tsc",
     "ci": "yarn lint && yarn test --watchAll=false",
     "audit:fix": "npx yarn-audit-fix",
+    "prepare": "yarn build",
     "prerelease": "yarn lint:fix && yarn test:coverage",
     "release": "yarn publish",
     "storybook": "storybook dev -p 6006",
