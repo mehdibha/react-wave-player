@@ -22,6 +22,7 @@ const config: StorybookConfig = {
       }
     },
   ],
+  staticDirs: ['../assets'],
   webpackFinal: async config => {
     return {
       ...config,

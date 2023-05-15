@@ -1,2 +1,2 @@
-export { Button } from './components/Button';
-export type { IButtonProps } from './components/Button';
+export { default as WavePlayer } from './components/wave-player';
+export type { PlayerProps } from './components/wave-player';
